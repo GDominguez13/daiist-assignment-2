@@ -1,5 +1,5 @@
 scenario,cost_per_1000,review_share
 Do nothing (always pass),30000.0,0.0
-Person reviews all,750.0,1.0
+Person reviews all,990.0,1.0
 Model alone (validation cutoff),2451.6587582029274,0.0
-Hybrid (validation-selected thresholds),2043.1037354871276,0.1527097425542655
+Hybrid (validation-selected thresholds),2233.6037354871273,0.10728117112569409
