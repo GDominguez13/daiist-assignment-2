@@ -41,34 +41,34 @@
   "max_review_share": 0.26666666666666666,
   "capacity_feasible": true,
   "exact_cross_split_duplicate_count": 0,
-  "single_threshold": 0.07,
-  "low_threshold": 0.075,
-  "high_threshold": 0.85,
+  "single_threshold": 0.0734,
+  "low_threshold": 0.00263,
+  "high_threshold": 0.84,
   "test_hybrid": {
-    "cost_per_1000": 2233.6037354871273,
-    "review_share": 0.10728117112569409,
+    "cost_per_1000": 1054.4661786976276,
+    "review_share": 0.2025007571933367,
     "matrix": [
       [
-        540,
-        26,
-        0
+        474,
+        90,
+        2
       ],
       [
-        9,
-        78,
-        53
+        3,
+        73,
+        64
       ]
     ],
     "rates_by_truth": [
       [
-        0.9540636042402827,
-        0.045936395759717315,
-        0.0
+        0.8374558303886925,
+        0.15901060070671377,
+        0.0035335689045936395
       ],
       [
-        0.06428571428571428,
-        0.5571428571428572,
-        0.37857142857142856
+        0.02142857142857143,
+        0.5214285714285715,
+        0.45714285714285713
       ]
     ]
   },
@@ -274,8 +274,8 @@
       ]
     }
   },
-  "note": "Image positive = at least one annotated exposed head. Review is modeled as perfectly accurate and incurs review+intervention costs for positive cases. Detection confidence is not calibrated risk.",
-  "decision_policy_version": 2,
+  "note": "Per-image positive = >=1 annotated exposed head. One picture is not certification of compliance. Human review is assumed error-free. Reviewed positives incur both review and intervention costs.",
+  "decision_policy_version": 3,
   "selection_provenance": "thresholds optimized on saved validation predictions only; held-out test used for evaluation",
   "cost_accounting": "positive review costs review+tp; reviewer assumed perfectly accurate"
 }
