@@ -65,6 +65,8 @@ In containing both labeled hads and helmets in workers scenes, and having train,
 
 I fine-tuned YOLO11s starting from the pretrained yolo11s.pt checkpoint rather than random weights. s is preferred over n to deal with the small objects. No architecture search was conducted.
 
+    Note: train.ipynb was ran on Google Colab using T4 GPU. `weights` and `artifacts` were both copied from there. It is apparently likely that running `main.py train` on different hardware may give slightly different numbers.
+
 - Settings: 30 epochs (mosaic augmentation switched off for epochs 21-30), image size 640, batch 16, deterministic, early-stopping patience 8 (untriggered).
 - System choices: Ultralytics chose the optimiser (AdamW with a LR of .0014) and standard augmentation, with mixed precision on
 - Confidence floor at .001, NMS IoU .7, batches of 4 images done so as to avoid GPU memory failures. 
@@ -82,8 +84,6 @@ All three models below are scored on the same  test split with the same scorer, 
 The finetuned model beats both baselines comfortably. 
 - The predict nothing baseline costs 30k per 1000 photos (at my assumed rate), compared to about 1,054€ for the model + a person.
 - COCO has no head or helmet class, so the only way to map it is its person class. In that class, COCO model is better than my finetuned model (.038 v. .031), which is a labeling issue (COCO also makes almost 3000 other person detections that the labels do not contains). 
-
-
 
 ## Per-class evaluation and failure modes
 
@@ -125,7 +125,7 @@ No other error sources (such as small obejcts or crowded scenes) can be proven f
 
 *Refer to section 1 for the cost table*
 
-Disclaimer on assumptions: I assume 12% of photos are unsafe, which is lower than the dataset's 18-20% as explained above. I assume the site sends 600 photos a day, that a check takes 45 seconds, and that the supervisor can give 2 hours a day to check photos, which covers 160 photos. These are reasonable numbers that have no data to back them up, but are sourced from my reasonable estimates and finetuned with AI to try and avoid personal bias.
+    Disclaimer on assumptions: I assume 12% of photos are unsafe, which is lower than the dataset's 18-20% as explained above. I assume the site sends 600 photos a day, that a check takes 45 seconds, and that the supervisor can give 2 hours a day to check photos, which covers 160 photos. These are reasonable numbers that have no data to back them up, but are sourced from my reasonable estimates and finetuned with AI to try and avoid personal bias.
 
 Say the model's score was a probability *p* of an unsafe photo. The costs would then fix the threshold as follows:
 - Pass is better than sending to a person when *p* × 250 < 0.75 + *p* × 2, = *p* < 0.0030.
